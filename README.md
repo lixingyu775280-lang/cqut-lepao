@@ -1,4 +1,4 @@
-# lepao-run-kit · 校园跑步协议研究工具包（AI 可读可跑）
+# lepao-run-kit · 校园跑步协议研究工具包（学习交流版）
 
 > **出处署名（LRL-1.0 要求，不可删除）**
 > 本工具包基于 **dan-cun / Lepao Research（乐跑协议研究）** 的研究成果整理：
@@ -7,7 +7,7 @@
 > 派生研究线索另署：vibe-GIF/budaolepao（防御侧检测规则）、Suzuran28/Fuck-You-HappyRun（app-service.js 逆向）、xepes0/wloc。
 > **风险自负**：账号限制、成绩作废、数据丢失等后果由使用者自行承担。
 
-把「校园跑步平台（步道乐跑 / lptiyu）」的协议层实现整理成 **AI 可读可跑** 的工具包：
+把「校园跑步平台（步道乐跑 / lptiyu）」的协议层实现整理成一套**可运行、可验证**的学习工程：
 请求加密与签名、跑区与打卡点解析、轨迹与步态数据生成、OSS 直传、`stopRun` 提交、提交后复核，
 外加一套**零网络、零凭证的离线自检**（42 项断言）。
 
@@ -34,18 +34,20 @@ python verify.py                                # 一条命令验收：自检 + 
 验收通过：协议算法、命名仿真、轨迹生成、干跑链路全部达标；全程未联网、未使用任何凭证。
 ```
 
-## 文档导航
+## 建议阅读顺序
 
-- [`AI_README.md`](AI_README.md) —— 总说明 / 数据流 / 阅读顺序 / 常见失败
-- [`AGENTS.md`](AGENTS.md) —— 给执行型 AI 的任务书（步骤 + 检查点 + 故障决策表）
-- [`PROTOCOL.md`](PROTOCOL.md) —— 协议实证全集（端点 / 加密 / 签名 / 字段 / OSS / 风控）
-- [`lepao-ai-kit-单文件版.md`](lepao-ai-kit-单文件版.md) —— 上述全部 + 源码压成一个文件（丢给任意 AI 即可）
+1. `PROTOCOL.md` —— 协议实证全集（端点 / 加密 / 签名 / 字段 / OSS / 风控），先懂协议再看代码
+2. `lepaorun/lepao/crypto.py` → `transport.py` → `v3api.py` → `record.py` —— 协议三件套 + 落盘仿真
+3. `lepaorun/lepao/ctbu_track.py` → `smooth_route.py` —— 轨迹与环线几何
+4. `sr_engine.py` —— 主引擎，把上面所有环节串成一次完整提交
+5. `selftest.py` / `verify.py` —— 每一层都有对应的离线断言，改完跑一遍就知道有没有改坏
+6. `har2profile.py` —— 凭证从哪来（一份 HAR 解身份 + 探活 + 写 profile）
 
 ## 目录结构
 
 ```
 lepao-run-kit/
-├── AI_README.md  AGENTS.md  PROTOCOL.md  requirements.txt  LICENSE
+├── README.md  PROTOCOL.md  requirements.txt  LICENSE
 ├── selftest.py  verify.py  preflight.py
 ├── sr_engine.py  har2profile.py  netenv.py  smooth_route.py
 ├── lepaorun/lepao/{__init__,crypto,transport,v3api,record,track,ctbu_track,pipeline}.py

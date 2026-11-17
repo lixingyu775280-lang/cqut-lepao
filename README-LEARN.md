@@ -1,20 +1,13 @@
-# 乐跑（步道乐跑 / lptiyu）协议层工具包 · AI 交接说明
+# 校园乐跑协议研究 · 学习笔记（README-LEARN）
 
-> **署名（LRL-1.0 要求，不可删除）**
-> 本工具包基于 **dan-cun / Lepao Research（乐跑协议研究）** 的研究成果整理：
-> 原始仓库 <https://github.com/dan-cun/lepao3>，原作者 **dan-cun**，原许可 **乐跑研究协议 1.0（LRL-1.0）**。
-> 本工具包**继续以 LRL-1.0 授权**：仅供学习研究、不可牟利、再发布须署名引用原始仓库并保留全部声明。
-> 派生研究线索另署：vibe-GIF/budaolepao（防御侧检测规则）、Suzuran28/Fuck-You-HappyRun（app-service.js 逆向）、xepes0/wloc。
-> **风险自负**：账号限制、成绩作废、数据丢失等后果由使用者自行承担。
+> 这份是给我自己学习用的总览笔记，记录整个工程怎么读、怎么跑、每层在干嘛。
+> 署名与许可见 `README.md` 顶部（LRL-1.0）。
 
----
+## 0. 一句话总结
 
-## 0. 给 AI 的一句话任务
-
-> 这是一套**校园跑步平台（步道乐跑 / lptiyu）的协议层实现**：请求加密与签名、跑区与打卡点解析、轨迹与步态数据生成、OSS 直传、`stopRun` 提交、提交后复核。
-> 请先**离线跑通自检与干跑**（不联网、不需要任何凭证），理解数据流，再谈真实提交；真实提交只能用于**使用者本人或已明确同意的账号**。
-
-**默认行为是安全的**：`sr_engine.py` 不带 `--submit` 时**纯离线**（不建立任何连接），只生成轨迹并落盘预览图。
+一套**校园跑步平台（步道乐跑 / lptiyu）的协议层实现**：
+请求加密与签名、跑区与打卡点解析、轨迹与步态数据生成、OSS 直传、`stopRun` 提交、提交后复核。
+不带 `--submit` 时全部离线，不联网、不需要任何凭证。
 
 ---
 
@@ -22,23 +15,25 @@
 
 ```
 lepao-run-kit/
-├── AI_README.md          ← 本文件：总说明 / 上手 / 阅读顺序
-├── AGENTS.md             ← 给能执行命令的 AI agent：逐步任务书 + 检查点 + 失败处理
-├── PROTOCOL.md           ← 协议实证全集：端点 / 加密 / 签名 / 头组 / 字段 / 错误码 / 风控
+├── README.md             仓库门面：三条路径 / 快速开始 / 边界
+├── README-LEARN.md       ← 本文件：学习笔记与阅读顺序
+├── PROTOCOL.md           协议实证全集：端点 / 加密 / 签名 / 头组 / 字段 / 错误码 / 风控
 ├── requirements.txt
-├── selftest.py           ← ★ 离线自检（加密向量 / 签名 / 轨迹 / 命名仿真），零依赖外部服务
-├── netenv.py             ← 本机代理自动探测（fake-IP 环境下直连必挂）
-├── smooth_route.py       ← 闭环样条 → 弧长重采样 → 同心车道偏移（椭圆环线生成器）
-├── sr_engine.py          ← ★ 主引擎：profile → 跑区 → 环线规划 → 轨迹 → OSS → stopRun → 复核
-├── har2profile.py        ← 只有一份 HAR 时的入口：解身份 + 探活 + 拉跑区 + 写 profile
-├── lepaorun/lepao/       ← 协议库（crypto / transport / v3api / record / ctbu_track / track / pipeline）
+├── selftest.py           ★ 离线自检（加密向量 / 签名 / 轨迹 / 命名仿真），零依赖外部服务
+├── verify.py             ★ 一条命令验收：selftest + 干跑 + 达标判定
+├── preflight.py          推 GitHub 前的脱敏门（扫凭证 / 真名 / 原始坐标 / 本机路径）
+├── netenv.py             本机代理自动探测（fake-IP 环境下直连必挂）
+├── smooth_route.py       闭环样条 → 弧长重采样 → 同心车道偏移（椭圆环线生成器）
+├── sr_engine.py          ★ 主引擎：profile → 跑区 → 环线规划 → 轨迹 → OSS → stopRun → 复核
+├── har2profile.py        只有一份 HAR 时的入口：解身份 + 探活 + 拉跑区 + 写 profile
+├── lepaorun/lepao/       协议库（crypto / transport / v3api / record / ctbu_track / track / pipeline）
 ├── samples/
-│   ├── zone_live.sample.json   ← 某校跑区配置实录（beforeRunV260 响应），含跑区边界与打卡点
-│   ├── profile.sample.json     ← 干跑用占位 profile（uid=0 / token=占位符）
-│   └── config.sample.json      ← 多成员配置骨架（无任何真实凭证）
+│   ├── zone_live.sample.json   跑区配置样例（已脱敏：身份/进度清零、坐标平移）
+│   ├── profile.sample.json     干跑用占位 profile（uid=0 / token=占位符）
+│   └── config.sample.json      多成员配置骨架（无任何真实凭证）
 ├── data/
-│   └── track_template.json     ← 真人有效轨迹模板（仅坐标与字段，无身份字段）
-└── out/                        ← 运行产物（轨迹预览图 / ring_plan / submit_*.json）
+│   └── track_template.json     真人有效轨迹模板（仅坐标与字段，无身份字段）
+└── out/                        运行产物（轨迹预览图 / ring_plan / traj / submit_*.json）
 ```
 
 代码阅读顺序（强烈建议按此顺序）：
@@ -54,9 +49,10 @@ lepao-run-kit/
 python -m pip install pycryptodome numpy          # 必需；brotli / Pillow 可选
 python selftest.py                                 # ① 自检：加密/签名/轨迹/命名仿真是否正常
 python sr_engine.py samples/profile.sample.json    # ② 干跑：用真实跑区配置生成一条完整轨迹
+python verify.py                                   # ③ 或一条命令全验
 ```
 
-② 会打印跑区信息、环线参数（a/b/θ/打卡点覆盖）、每条生成候选的距离/用时/配速、出界点比例，并在 `out/` 落一张轨迹预览图（装了 Pillow 才有图）。
+② 会打印跑区信息、环线参数（a/b/θ/打卡点覆盖）、每条生成候选的距离/用时/配速、出界点比例，并在 `out/` 落轨迹预览图与轨迹点串（装了 Pillow 才有图）。
 **这一步不联网**，`uid=0`、`token="PLACEHOLDER"` 就是故意的。
 
 ### 路径 B：真实提交（需要自己的合法凭证）
@@ -137,10 +133,10 @@ python sr_engine.py out/profile_<uid>.json --submit   # 才真正提交
 
 ---
 
-## 7. 边界（请让 AI 也读这一段）
+## 7. 边界（自己也照做）
 
 - **只用于本人账号，或已明确同意的成员**。不要拿它替别人打卡、不要商业化（LRL-1.0 明确禁止牟利与代打卡服务）。
-- 仓库/交付物内**不含任何真实凭证、学号、uid、姓名、真实轨迹身份字段**；`samples/` 全是占位或平台公开下发的跑区配置。
+- 仓库/交付物内**不含任何真实凭证、学号、uid、姓名、真实轨迹身份字段**；`samples/` 全是占位或脱敏后的跑区配置。
 - 抓包文件（HAR）含完整业务报文与 token，**不要外传、不要上传网盘或公开仓库**。
 - 平台风控是黑盒：距离/配速/时间/路线形状/步态/出界比例都会被查。默认参数已按真人黄金记录画像校准，请勿为了"跑更多"把这些参数改得更激进。
 - 若学校公示针对代跑的公告，立即停用。

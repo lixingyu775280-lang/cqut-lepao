@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """verify.py —— 一条命令验收整个工具包（离线，不联网、不需要凭证）
 
@@ -7,7 +7,7 @@
 做三件事：
   1) 跑 selftest.py（协议算法/命名仿真/轨迹生成的离线自检）
   2) 跑一次干跑（用 samples/ 里的真实跑区配置生成轨迹，零网络请求）
-  3) 按 AGENTS.md 的验收标准逐条判定，打印结论表
+  3) 按 README-LEARN.md §5 的验收标准逐条判定，打印结论表
 
 退出码 0 = 全部达标；1 = 有项目未达标（详见输出）。
 """
@@ -69,7 +69,7 @@ def main() -> int:
         print(f"{name:<28}{'OK' if ok else 'FAIL':<8}{detail}")
     print("=" * 78)
     if bad:
-        print(f"验收未通过：{bad} 项未达标 —— 先修好再谈真实提交（见 AGENTS.md §5）")
+        print(f"验收未通过：{bad} 项未达标 —— 先修好再谈真实提交（见 README-LEARN.md §6）")
         return 1
     print("验收通过：协议算法、命名仿真、轨迹生成、干跑链路全部达标；全程未联网、未使用任何凭证。")
     print("下一步（可选，仅限本人/已同意账号）：python har2profile.py <你的.har> --check")
