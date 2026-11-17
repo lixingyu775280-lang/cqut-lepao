@@ -1,4 +1,4 @@
-# lepao-protocol · 校园跑步协议研究与实现
+﻿# cqut-lepao · 校园跑步协议研究与实现
 
 > **出处署名（LRL-1.0 要求，不可删除）**
 > 本仓库基于 **dan-cun / Lepao Research（乐跑协议研究）** 的研究成果整理：
@@ -42,7 +42,7 @@ python verify.py                                # 一条命令验收：自检 + 
 ## 目录结构
 
 ```
-lepao-protocol/
+cqut-lepao/
 ├── README.md  README-NOTES.md  PROTOCOL.md  requirements.txt  LICENSE
 ├── selftest.py  verify.py  preflight.py
 ├── sr_engine.py  har2profile.py  netenv.py  smooth_route.py

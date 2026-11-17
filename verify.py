@@ -32,7 +32,7 @@ def run(args, timeout=600):
 def main() -> int:
     rows: list[tuple[str, bool, str]] = []
     print("=" * 78)
-    print("lepao-protocol 验收 verify.py")
+    print("cqut-lepao 验收 verify.py")
     print("=" * 78)
 
     print("\n[1/2] 运行 selftest.py …")

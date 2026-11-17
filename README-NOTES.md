@@ -14,7 +14,7 @@
 ## 1. 目录结构
 
 ```
-lepao-protocol/
+cqut-lepao/
 ├── README.md             仓库门面：三条路径 / 快速开始 / 边界
 ├── README-NOTES.MD       ← 本文件：学习笔记与阅读顺序
 ├── PROTOCOL.md           协议实证全集：端点 / 加密 / 签名 / 头组 / 字段 / 错误码 / 风控
