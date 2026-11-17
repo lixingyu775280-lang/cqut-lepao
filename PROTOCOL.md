@@ -12,8 +12,8 @@
 ① WpRun/getTermList          鉴权真门：token 有效 → 正常 JSON；失效 → status=101
 ② Run2/beforeRunV260         跑区边界 + 打卡点 + 时间/距离/配速/打卡点规则（大而全）
 ③ WpRun/getTermRunRecord     学期记录分页（查当日额度、复核成绩）
-④ Run/getTimestampV278       服务器时间（本地时钟不可信时以它为准）
-⑤ 本地：环线规划 + 轨迹生成 + 步态生成 + 自检
+④ Run/getTimestampV278       服务器时间（工地时钟不可信时以它为准）
+⑤ 工地：环线规划 + 轨迹生成 + 步态生成 + 自检
 ⑥ WpIndex/getOssSts          OSS STS 临时凭证（bucket = lptiyu-ps{school_id}）
 ⑦ OSS 表单直传               轨迹文件（AES 密文），key = Public/Upload/file/<record_file>
 ⑧ Run/stopRunV278            正式提交（唯一带 flag 头的业务接口之一）
@@ -31,7 +31,7 @@ content-length: <len>
 content-type: application/x-www-form-urlencoded
 [flag: [object Boolean]]        ← 仅 stopRunV278 / loginByCode 带（小程序 String(Boolean) 缺陷复刻）
 charset: utf-8
-referer: https://servicewechat.com/<APP_ID>/<版本>/page-frame.html   【学校相关：小程序 appid】
+referer: https://servicewechat.com/<APP_ID>/<版工>/page-frame.html   【学校相关：小程序 appid】
 user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) …  MiniProgramEnv/M
 accept-encoding: gzip, deflate[, br]
 
@@ -87,11 +87,11 @@ sign = md5( 按键名升序拼接 "k1v1k2v2…" + "rDJiNB9j7vD2" )      # 盐值
 
 ## 4. 鉴权与会话模型（最重要的一条）
 
-- **无状态 token 门**：合法 token 即通过，与本机 IP、Cookie、PHPSESSID **无关**。
-- **token = 单活动会话消耗品**：任何地方重新登录（含本人手机打开 App/小程序）**立刻轮换**旧 token，旧 token 立即 `101`。
-  ⇒ 每个"要刷的号"必须有一份**较新且未被挤掉**的 token；实操上就是让本人抓一次 HAR 交过来。
-- 门之后的业务层**信任 `uid` 参数**（读接口存在 IDOR 实证）。本工具包的纪律：**只写自己 uid 的数据**。
-- 出口链：会话接口要求与登录时**同一条出口路径**。fake-IP / TUN 环境下直连常表现为超时或 `101`，所以 `netenv.py` 先探测本机代理端口（7897/12450/8081/10808/7890/20171）并自动走 CONNECT 隧道。
+- **无状态 token 门**：合法 token 即通过，与工机 IP、Cookie、PHPSESSID **无关**。
+- **token = 单活动会话消耗品**：任何地方重新登录（含工人手机打开 App/小程序）**立刻轮换**旧 token，旧 token 立即 `101`。
+  ⇒ 每个"要刷的号"必须有一份**较新且未被挤掉**的 token；实操上就是让工人抓一次 HAR 交过来。
+- 门之后的业务层**信任 `uid` 参数**（读接口存在 IDOR 实证）。本仓库的纪律：**只写自己 uid 的数据**。
+- 出口链：会话接口要求与登录时**同一条出口路径**。fake-IP / TUN 环境下直连常表现为超时或 `101`，所以 `netenv.py` 先探测工机代理端口（7897/12450/8081/10808/7890/20171）并自动走 CONNECT 隧道。
 
 ---
 
@@ -124,8 +124,8 @@ sign = md5( 按键名升序拼接 "k1v1k2v2…" + "rDJiNB9j7vD2" )      # 盐值
 | `run_line_info.point_list[]` | 打卡点 `{id, jingwei:"纬度,经度"}` | 打卡点集合；**index 顺序即官方环线**（不要按角度排序，会折返） |
 | `time_rule_arr[0]` | `min_distance/max_distance`、`min_pace/max_pace`、`min_log_num` | 距离/配速窗口、最少打卡点数 |
 | `run_start_time` / `run_end_time` | 当日有效秒区间（如 06:00=21600） | 起始时间必须落在窗口内 |
-| `term_id` / `term_num` | 学期 id / 本学期要求次数 | 提交与进度统计 |
-| `total_num` / `total_log_num` / `total_distance` | 已完成次数 / 打卡点 / 里程 | 数据查询（`学期进度.py` 类脚本） |
+| `term_id` / `term_num` | 学期 id / 工学期要求次数 | 提交与进度统计 |
+| `total_num` / `total_log_num` / `total_distance` | 已完成次数 / 打卡点 / 里程 | 数据查询（`学期进度.py` 类脚工） |
 | `is_check_geedevice` / `need_network` / `is_check_device` | 风控开关 | 语义未完全探明，实证未拦截有效性判定 |
 | `stepLength` / `gyroscope_type` | 步幅 / 陀螺仪要求 | 步态数据生成参考 |
 
@@ -238,7 +238,7 @@ sign = md5( 按键名升序拼接 "k1v1k2v2…" + "rDJiNB9j7vD2" )      # 盐值
 - 距离/配速：贴着校规下限附近随机（如 2.6~3.5km、4'30"~8'00"），偶尔放大，别天天极限值。
 - 每周留 1~2 天不跑（周圈不要 7/7）。
 - 硬熔断：任一次出现"打卡点异常/无效"→ 立即停用 ≥7 天并复盘。
-- token 每次使用前后不要在本机登录该账号的 App。
+- token 每次使用前后不要在工机登录该账号的 App。
 
 ---
 

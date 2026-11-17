@@ -40,7 +40,7 @@ SOFT = [
     ("HAR 文件提及（文档允许）", re.compile(r"\.har\b")),
 ]
 GEO_REAL = re.compile(r"(30\.7[45]\d{4}|108\.44[89]\d{4}|108\.45[01]\d{4})")   # 原始跑区坐标段
-ALLOW_FILES = {"preflight.py", "sanitize_report.txt", "PROTOCOL.md", "README-LEARN.md"}
+ALLOW_FILES = {"preflight.py", "sanitize_report.txt", "PROTOCOL.md", "README-NOTES.md"}
 ALLOW_CODES = {r"lepao.ctbu.edu.cn", r"zone_live", r"run_zone", r"获取"}  # 误报抑制（学校自部署域名样例在 PROTOCOL 中以占位出现）
 
 bad: list[str] = []

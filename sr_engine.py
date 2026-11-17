@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """sr_engine.py —— 主引擎（由 刷号通用.py 更名）：任意号 + 任意跑区 → 规划椭圆环线 → 生成 → 提交 → 复核
-本工具包版本：产物统一写 out/；不带 --submit 时纯离线，不建立任何连接。
+本仓库版本：产物统一写 out/；不带 --submit 时纯离线，不建立任何连接。
 用法: python 刷号通用.py <profile.json> [--submit]
 profile.json: {uid, token, school_id, student_num, zone_live, keep_n}
 """
@@ -22,7 +22,7 @@ UID = PROF["uid"]; TOKEN = PROF["token"]; SCHOOL = PROF["school_id"]
 STU = PROF.get("student_num") or ""
 _zp = PROF["zone_live"]
 if not os.path.isabs(_zp):
-    _zp = os.path.join(HERE, _zp)      # 允许写相对路径（相对本工具包根目录）
+    _zp = os.path.join(HERE, _zp)      # 允许写相对路径（相对仓库根目录）
 ZCFG = json.load(io.open(_zp, encoding="utf-8"))
 N_KEEP = int(PROF.get("keep_n") or 0)
 DEV = PROF.get("device") or {}

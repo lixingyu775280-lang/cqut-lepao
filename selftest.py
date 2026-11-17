@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""selftest.py —— 乐跑工具包离线自检（不联网、不需要任何凭证）
+"""selftest.py —— 离线自检（不联网、不需要任何凭证）
 
 跑法:
     python selftest.py            # 全部检查
@@ -283,5 +283,5 @@ if bad:
         print(f"  FAIL  {name}   {detail}")
     print("自检失败 —— 先修好再谈真实提交")
     sys.exit(1)
-print("自检通过 —— 工具包离线链路完整（未使用任何凭证、未发起任何网络请求）")
+print("自检通过 —— 离线链路完整（未使用任何凭证、未发起任何网络请求）")
 sys.exit(0)
