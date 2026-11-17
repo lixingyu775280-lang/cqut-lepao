@@ -1,0 +1,261 @@
+{
+ "is_check_geetest": 0,
+ "is_check_deepkonw": 0,
+ "is_check_geedevice": 0,
+ "is_check_shumeng": 0,
+ "beta_url": "",
+ "is_check_device": 0,
+ "is_check_time": 1,
+ "delay_time_str": "有效跑步记录须在当天内上传，超时不关联成绩",
+ "authStatus": 2,
+ "tips": "",
+ "ruleUrl": "",
+ "run_start_time": 18000,
+ "run_end_time": 82800,
+ "school_id": 409,
+ "school_name": "示例大学",
+ "role": "1",
+ "run_zone_id": "1704",
+ "run_zone_name": "示例田径场跑区",
+ "run_zone_num": 3,
+ "run_zone_list": [
+  {
+   "id": "839",
+   "name": "示例大学教学区跑区",
+   "point_type": "1",
+   "time": [
+    {
+     "start_time": 0,
+     "end_time": 86399
+    }
+   ],
+   "is_default": 0
+  },
+  {
+   "id": "1704",
+   "name": "示例大学田径场跑区",
+   "point_type": "1",
+   "time": [
+    {
+     "start_time": 0,
+     "end_time": 86399
+    }
+   ],
+   "is_default": 1
+  },
+  {
+   "id": "2426",
+   "name": "示例大学第二校区",
+   "point_type": "1",
+   "time": [
+    {
+     "start_time": 0,
+     "end_time": 86399
+    }
+   ],
+   "is_default": 0
+  }
+ ],
+ "term_id": "13345",
+ "term_date": "2026.08.01~2027.02.06",
+ "term_start_time": "1785513600",
+ "term_end_time": "1801843200",
+ "rule_status": "1",
+ "total_num": 0,
+ "total_log_num": 0,
+ "total_distance": 0,
+ "run_score": 0,
+ "capture_config": {},
+ "is_capture_zone": 0,
+ "is_register_face": 0,
+ "is_limit_range": 0,
+ "log_mode": "1",
+ "log_logic": 1,
+ "pass_num": 0,
+ "pass_rate": 0,
+ "real_point_type": "1",
+ "point_type": "1",
+ "repeat_num": 0,
+ "point_num": "0",
+ "random_distance": "300",
+ "capture_type": "1",
+ "capture_interval": "0",
+ "dayrule_ids": "",
+ "game_id": "1704",
+ "max_num": 0,
+ "show_point_num": 0,
+ "time_rule_arr": [
+  {
+   "start_time": "23400",
+   "end_time": "81000",
+   "min_log_num": "2",
+   "min_num": "1",
+   "min_distance": "2.00",
+   "max_distance": "10.00",
+   "min_pace": "480",
+   "max_pace": "180",
+   "pace_str": "3`0``~8`0``",
+   "score_calc_type": "1",
+   "point_num_offline": "0",
+   "point_num_online": "2"
+  }
+ ],
+ "term_num": "39",
+ "running_time": [
+  {
+   "time_type": "3",
+   "start_time": "23400",
+   "end_time": "81000"
+  }
+ ],
+ "week_time": [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "0"
+ ],
+ "run_line_info": {
+  "point_num": "2",
+  "point_update_distance": "0.5",
+  "point_min_distance": 0.01,
+  "point_max_distance1": "1.0",
+  "point_max_distance2": "2.0",
+  "log_max_distance": "100",
+  "uid": 0,
+  "user_avatar": "",
+  "point_list": [
+   {
+    "id": "21422",
+    "game_id": "1704",
+    "type": "2",
+    "index": "0",
+    "address": "示例田径场打卡点1",
+    "is_del": "0",
+    "jingwei": "31.250023,109.949767",
+    "exp": "0",
+    "ctrl_status": "1",
+    "vena_point_id": "0",
+    "cover_url": "",
+    "is_online": 1,
+    "point_type": 1
+   },
+   {
+    "id": "21423",
+    "game_id": "1704",
+    "type": "2",
+    "index": "0",
+    "address": "示例田径场打卡点2",
+    "is_del": "0",
+    "jingwei": "31.249450,109.950512",
+    "exp": "0",
+    "ctrl_status": "1",
+    "vena_point_id": "0",
+    "cover_url": "",
+    "is_online": 1,
+    "point_type": 1
+   },
+   {
+    "id": "21424",
+    "game_id": "1704",
+    "type": "2",
+    "index": "0",
+    "address": "示例田径场打卡点3",
+    "is_del": "0",
+    "jingwei": "31.250653,109.950638",
+    "exp": "0",
+    "ctrl_status": "1",
+    "vena_point_id": "0",
+    "cover_url": "",
+    "is_online": 1,
+    "point_type": 1
+   }
+  ]
+ },
+ "run_num": 0,
+ "run_log_num": 0,
+ "run_distance": 0,
+ "run_notes_status": 0,
+ "run_notes_time": 0,
+ "run_notes": [
+  "请在校园内跑步，注意安全并确保身体状态适宜，以下情况不建议开展运动：",
+  "1、身体疲乏、四肢无力、头晕、贫血",
+  "2、高血压、心脏病或其他慢性疾病",
+  "3、其它身体异常或天气恶劣等情况",
+  "4、跑步结束后，后续将经过防作弊系统检测，若有模拟器和代步等行为，则取消成绩"
+ ],
+ "run_tips": [
+  "请在校园内跑步，注意安全并确保身体状态适宜，以下情况不建议开展运动：",
+  "1、身体疲乏、四肢无力、头晕、贫血",
+  "2、高血压、心脏病或其他慢性疾病",
+  "3、其它身体异常或天气恶劣等情况",
+  "4、跑步结束后，后续将经过防作弊系统检测，若有模拟器和代步等行为，则取消成绩"
+ ],
+ "ios_gps_level": 0,
+ "ios_gps_max_distance": 20,
+ "ios_gps_start_precision": 1000,
+ "ios_gps_process_precision": 100,
+ "ios_gps_log_precision": 200,
+ "android_gps_level": 0,
+ "android_gps_max_distance": 30,
+ "android_gps_start_precision": 30,
+ "android_gps_process_precision": 100,
+ "android_gps_log_precision": 100,
+ "stepLength": 0.5,
+ "cache_time": 30,
+ "weekData": [],
+ "today_run_user_num": 0,
+ "refresh_point_count": 3,
+ "freerun_status": "0",
+ "complain_reason": [
+  {
+   "id": 1,
+   "reason": "打卡点过少"
+  },
+  {
+   "id": 2,
+   "reason": "存在作弊嫌疑"
+  },
+  {
+   "id": 3,
+   "reason": "设备已更换"
+  },
+  {
+   "id": 4,
+   "reason": "借助他人设备"
+  }
+ ],
+ "in_white_list": 0,
+ "run_zone_latlng": [
+  "109.949299,31.251122",
+  "109.950943,31.251044",
+  "109.950873,31.249225",
+  "109.949216,31.249237"
+ ],
+ "run_zone_latlng_invalid": [],
+ "set_point_type": 1,
+ "gyroscope_type": "1",
+ "is_sim_white_list": 0,
+ "apply_free_url": "/v3/index.php/Running/applyFreeRun",
+ "run_tip_type": 3,
+ "is_face": "0",
+ "is_check_face": 0,
+ "face_img": "",
+ "offline_gameList_status": 0,
+ "running_standards_h5": "https://api2.lptiyu.com/bdlp_h5_fitness_test/view/rule/index.html",
+ "gyp_banner": "",
+ "gyp_url": "",
+ "auth_num": 0,
+ "school_auth_num": 0,
+ "run_check": "",
+ "android_cheats": [],
+ "snt_popup_enabled": 0,
+ "need_network": 1,
+ "is_location_white_list": 0,
+ "gaode_map_type": 2,
+ "run_face_verify_config": {},
+ "sports_data": [],
+ "robot_module": false
+}

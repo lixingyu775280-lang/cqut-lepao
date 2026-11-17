@@ -1,0 +1,40 @@
+乐跑工具包脱敏与构建报告
+========================================
+[1] 协议库 lepaorun/lepao/
+  + lepaorun\lepao\__init__.py  (1036 B)
+  + lepaorun\lepao\crypto.py  (1567 B)
+  + lepaorun\lepao\v3api.py  (5464 B)
+  + lepaorun\lepao\record.py  (5655 B)
+  + lepaorun\lepao\track.py  (16432 B)
+  + lepaorun\lepao\ctbu_track.py  (16300 B)
+  + lepaorun\lepao\pipeline.py  (14463 B)
+  + lepaorun/lepao/ctbu_track.py 默认 ZONE_POLYGON 已平移为示例多边形
+  + lepaorun\lepao\transport.py  (3995 B)
+
+[2] 引擎与工具
+  + sr_engine.py  (14881 B)
+  + netenv.py  (1296 B)
+  + smooth_route.py  (8378 B)
+  + har2profile.py  (6357 B)
+  + LICENSE  (6920 B)
+  + samples\config.sample.json  (973 B)
+  + data/track_template.json
+
+[3] 样例数据（脱敏）
+  身份类字段已清空: ['/run_line_info/uid=17****99']
+  跑区坐标整体平移 +(0.5°, +1.5°)，共 7 个点（几何形状与距离不变）
+  + samples\zone_live.sample.json  (5137 B)
+  + samples/zone_live.sample.json（名称/地址/坐标已脱敏；规则与打卡点结构保留）
+  + samples/profile.sample.json（uid=0 / token 占位：干跑不联网）
+
+[4] 敏感信息扫描
+  ~ AGENTS.md 凭证名词提及(软): 3 处（文档名词，非凭证）
+  ~ AI_README.md 凭证名词提及(软): 2 处（文档名词，非凭证）
+  ~ har2profile.py 凭证名词提及(软): 1 处（文档名词，非凭证）
+  ~ preflight.py 凭证名词提及(软): 4 处（文档名词，非凭证）
+  ~ verify.py 凭证名词提及(软): 1 处（文档名词，非凭证）
+  硬命中（真实敏感值）: 0 处   软命中（文档名词）: 11 处
+  凭证类文件残留: 无
+
+敏感命中总数: 0
+凭证类文件残留: 无

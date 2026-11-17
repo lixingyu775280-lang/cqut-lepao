@@ -1,0 +1,9 @@
+# 乐跑工具包依赖（Python 3.10+）
+# 必需
+pycryptodome>=3.20        # AES-128-CBC
+numpy>=1.26               # 环线网格搜索 / 向量运算
+
+# 可选（缺失时脚本会自动降级，不影响核心流程）
+brotli>=1.1.0             # 响应 br 解压（缺省时 accept-encoding 自动去掉 br）
+Pillow>=10.0              # 轨迹预览图 route_preview_<uid>.png
+mitmproxy>=10.0           # 仅"抓 token / 解析 HAR"时需要

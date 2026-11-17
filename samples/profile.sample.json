@@ -1,0 +1,13 @@
+{
+ "uid": 0,
+ "token": "PLACEHOLDER_TOKEN_NOT_USED_IN_DRYRUN",
+ "school_id": 409,
+ "student_num": "SAMPLE_STUDENT_NUM",
+ "zone_live": "samples/zone_live.sample.json",
+ "keep_n": 0,
+ "device": {
+  "mobileModel": "SAMPLE_MODEL",
+  "mobileDeviceId": "SAMPLE-DEVICE-ID",
+  "mobileOsVersion": "1"
+ }
+}

@@ -1,0 +1,18 @@
+﻿# 运行产物（本地生成，不入库）
+out/*
+!out/.gitkeep
+__pycache__/
+*.pyc
+*.pyo
+
+# 凭证类文件：永远不要提交
+config.json
+accounts.json
+tokens.db
+*.har
+wire_log.jsonl
+profile_*.json
+zone_live_*.json
+submit_*.json
+ring_plan_*.json
+traj_*.json
