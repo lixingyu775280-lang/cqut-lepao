@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-# --- lepao-research-notice v1 (do not remove; see LICENSE) ---
-# 乐跑协议研究（Lepao Research） · https://github.com/dan-cun/lepao3
-# Copyright (c) 2026 dan-cun · 技术讨论 QQ 1224145544（仅作技术讨论，不提供代打卡）
-# 许可证 LRL-1.0（乐跑研究协议 1.0）：仅供学习 · 不可牟利 · 再发布须署名引用原始仓库 · 声明不得删除
-# 删除或篡改本块即依 LRL-1.0 第三条自动终止授权；衍生版须继续以 LRL-1.0 授权并标注修改说明。
-# --- end lepao-research-notice ---
-# Copyright (c) 2026 dan-cun · 许可协议见项目根目录 LICENSE
+﻿# -*- coding: utf-8 -*-
+# --- license notice ---
+# License: MIT (see LICENSE)
+# --- end license notice ---
 """lepao.pipeline —— 每日任务流水线（dry-run 优先, 提交需显式授权标志）
 
 流程（对齐真机调用时序）:
@@ -173,7 +169,7 @@ class Pipeline:
                 cover = all(p[2] in cr_ for p in rule["pts"])
                 self.log(f"[4.{attempt}] math 点={len(tr_)} 距离={dist_}km "
                          f"用时={used_}s 配速={pace:.0f}s/km 覆盖={cover}")
-                # 用学校真实窗口（policy）判定实际路径距离，而非 lepao3 默认 rule 窗口
+                # 用学校真实窗口（policy）判定实际路径距离，而非上游默认 rule 窗口
                 if cover and self.policy["dist_lo"] <= dist_ <= self.policy["dist_hi"] \
                         and self.policy["pace_lo"] <= pace <= self.policy["pace_hi"]:
                     return tr_, "math", used_, dist_, {"crossings": cr_}
