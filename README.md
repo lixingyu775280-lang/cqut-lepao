@@ -1,4 +1,4 @@
-# cqut-lepao · 校园跑步协议研究与实现
+﻿# cqut-lepao · 校园跑步协议研究与实现
 
 > 本仓库以 **MIT License** 授权（见 [LICENSE](LICENSE)）：仅供学习研究、不可牟利。
 > 派生研究线索另署：vibe-GIF/budaolepao（防御侧检测规则）、Suzuran28/Fuck-You-HappyRun（app-service.js 逆向）、xepes0/wloc。
@@ -9,6 +9,15 @@
 外加一套**零网络、零凭证的离线自检**（42 项断言）。
 
 **默认行为是安全的**：`sr_engine.py` 不带 `--submit` 时纯离线，不建立任何连接。
+
+## 关于 CQUT
+
+本仓库的跑区实证来自**重庆理工大学（Chongqing University of Technology，CQUT）两江校区的自部署步道乐跑平台**。
+
+- **协议层通用**：加密、签名、端点、OSS 直传这些是 lptiyu 平台全系列一致的实现，任何学校都能直接用；
+- **跑区层来自 CQUT**：`samples/zone_live.sample.json` 与 `data/track_template.json` 的原始数据来自该校平台的 `beforeRunV260` 响应与真实有效记录，用于离线验证与轨迹生成的研究样本；
+- **已脱敏**：样例中的身份/进度字段已清零，跑区坐标整体平移（几何形状不变，无法反查真实校园位置），学校名称在样例文件中替换为"示例大学"；
+- **换学校**：用你学校平台的 `beforeRunV260` 响应替换 `samples/zone_live.sample.json` 即可，引擎全程从配置读规则，无硬编码学校参数。
 
 ## 使用方式
 
